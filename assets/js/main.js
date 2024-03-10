@@ -108,7 +108,7 @@ function removeProduct(btn, index) {
         tableEl.removeChild(childToRemove);
         numOfItems--;
         // calcCartTotal();
-        renderCartTotal();
+        renderCartTotal(cartTotal);
         renderNumberOfItems(numOfItems);
     });
 };

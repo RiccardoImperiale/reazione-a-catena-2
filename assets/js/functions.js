@@ -34,3 +34,5 @@ export function renderCartTotal(cartTotal) {
     const totalRender = document.querySelector("#total");
     totalRender.innerHTML = cartTotal.toFixed(2) + ' €';
 };
+
+
