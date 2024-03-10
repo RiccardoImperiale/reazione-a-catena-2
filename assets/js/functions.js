@@ -26,8 +26,7 @@ export function renderNumberOfItems(numOfItems) {
     // render number of products added to cart
     itemElemets.innerHTML = `${numOfItems} Items`;
     cartItems.innerHTML = `ITEMS - ${numOfItems}`;
-}
-
+};
 
 // render cart total to order summary
 export function renderCartTotal(cartTotal) {
@@ -35,4 +34,10 @@ export function renderCartTotal(cartTotal) {
     totalRender.innerHTML = cartTotal.toFixed(2) + ' €';
 };
 
-
+export function addDeliveryPrice(shippingChoice, cartFullPrice,cartTotal) {
+    cartFullPrice = cartTotal;
+    shippingChoice == 5 && (cartFullPrice += 5);
+    shippingChoice == 7 && (cartFullPrice += 7);
+    shippingChoice == 12 && (cartFullPrice += 12);
+    return cartFullPrice;
+};

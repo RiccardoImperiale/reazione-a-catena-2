@@ -1,4 +1,4 @@
-import { render, renderNumberOfItems, renderCartTotal } from './functions.js';
+import { render, renderNumberOfItems, renderCartTotal, addDeliveryPrice } from './functions.js';
 
 const products = [
     {
@@ -55,7 +55,7 @@ document.querySelector('form').addEventListener('submit', (e) => {
     e.preventDefault();
     const shippingChoice = document.querySelector('select').value;
     const promoCode = document.querySelector('#promo_code').value;
-    cartFullPrice = addDeliveryPrice(shippingChoice);
+    cartFullPrice = addDeliveryPrice(shippingChoice, cartFullPrice, cartTotal);
     applyPromoCode(promoCode);
     totalCost.innerHTML = cartFullPrice.toFixed(2) + ' €'; // render the price including delivery and discount if applied 
 });
@@ -113,13 +113,7 @@ function removeProduct(btn, index) {
     });
 };
 
-function addDeliveryPrice(shippingChoice) {
-    cartFullPrice = cartTotal;
-    shippingChoice == 5 && (cartFullPrice += 5);
-    shippingChoice == 7 && (cartFullPrice += 7);
-    shippingChoice == 12 && (cartFullPrice += 12);
-    return cartFullPrice;
-};
+
 
 function applyPromoCode(promoCode) {
     const promoMessage = document.getElementById('promoCodeMsg');
