@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body class="debug">
+    <div class="container">
+        <div class="left">
+            <div class="container_top">
+                <h2 class="title">Shopping Cart</h2>
+                <div id="items"></div>
+            </div>
+            <div class="container_bottom">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="textalign-left">Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /left -->
+        <div class="right">
+            <div class="container_top">
+                <h2 class="title">Order Summary</h2>
+            </div>
+            <div class="container_bottom">
+                <form>
+                    <div class="d-flex justify-content-between">
+                        <h4 id="cart_items">fe</h4>
+                        <h4 id="total">33</h4>
+                    </div>
+                    <div class="form_inputs">
+                        <label for="shipping"><h4>Shipping</h4></label>
+                        <select id="shipping">
+                            <option value="5">Standard Delivery - 5 €</option>
+                            <option value="7">Fast Delivery - 7 €</option>
+                            <option value="12">Day Delivery - 12 €</option>
+                        </select>
+                        <label for="promo_code"><h4>Promo Code</h4></label>
+                        <input id="promo_code" type="text" placeholder="Enter Your Code">
+                        <span id="promoCodeMsg"></span>
+                    </div>
+                    <button type="submit">Apply</button>
+                </form>
+                <div class="checkout_container">
+                    <div class="d-flex justify-content-between">
+                        <h4>Total Cost</h4>
+                        <h4 id="total_cost">-</h4>
+                    </div>
+                    <button id="checkout_btn">Checkout</button>
+                </div>
+            </div>
+        </div>
+        <!-- /right -->
+    </div>
+
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

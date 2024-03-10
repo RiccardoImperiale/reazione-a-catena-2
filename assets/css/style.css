@@ -1,0 +1,237 @@
+:root {
+    --bg-primary: #e5e6ea;
+    --bg-lighter: #fefeff;
+    --bg-summary: #f5f4f7;
+    --border-primary: rgb(162, 162, 162);
+    --text-darker: #020203;
+    --text-dark: #636262;
+    --button-danger: #fa7272;
+    --button-ckeckout: #5d50dd;
+    --summary-w: 740px;
+    --padding-main: 120px;
+    --margin-fixed: 55px;
+    --divider-h: 2px;
+    --text-product-size: 36px;
+    --text-remove-size: 29px;
+    --text-title-tb-size: 36px;
+    --text-title-tb-weight: bold;
+    --text-title-size: 50px;
+    --text-tile-weight: bold;
+    --text-title-let-space: -1px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Utilities -----------------------------------> */
+
+.textalign-left {
+    text-align: left;
+}
+
+.textalign-center {
+    text-align: center;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.align-self-center {
+    align-self: center;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+/* Commons -----------------------------------> */
+
+body {
+    font-family: sans-serif;
+    background-color: var(--bg-primary);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    text-transform: uppercase;
+    border: none;
+    border-radius: 0;
+    color: var(--bg-lighter);
+    padding: .75rem 1.25rem;
+    cursor: pointer;
+}
+
+h4 {
+    text-transform: uppercase;
+    margin: 1rem 0 .5rem 0;
+}
+
+/* Main Styles ----------------------------------->  */
+
+.container {
+    max-width: 1200px;
+    width: 80%;
+    display: flex;
+    border-radius: 1rem;
+    overflow: hidden;
+
+    .left,
+    .right {
+        padding: 3rem;
+    }
+
+    .left {
+        background-color: var(--bg-lighter);
+        width: calc((100% / 12) * 8);
+        padding-bottom: 0;
+    }
+
+    .right {
+        background-color: var(--bg-summary);
+        width: calc((100% / 12) * 4);
+    }
+}
+
+.container_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--border-primary);
+    padding-bottom: 2rem;
+
+    #items {
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+}
+
+.title {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.container_bottom {
+    width: 100%;
+    padding-top: 2rem;
+    overflow: auto;
+    height: calc(100% - 56px);
+
+    & table {
+        border-collapse: collapse;
+        width: 100%;
+
+        & th {
+            text-transform: uppercase;
+            color: var(--text-dark);
+            font-size: .9rem;
+            padding-bottom: .8rem;
+        }
+
+        & img {
+            width: 90px;
+            height: 90px;
+            margin: .5rem 1rem .5rem 0;
+        }
+
+        .quantity_input {
+            width: 2rem;
+            height: 2rem;
+            text-align: center;
+        }
+
+        .add-button,
+        .remove-button {
+            border: none;
+            background-color: transparent;
+            color: var(--text-dark);
+            font-size: 1rem;
+            cursor: pointer;
+            padding: .5rem;
+        }
+
+        .remove_product {
+            color: var(--button-danger);
+            font-size: .85rem;
+        }
+
+        & [class^="single_product"] {
+            padding: .5rem 0;
+            transition: background-color .25s;
+            border-radius: 5rem;
+
+            &:hover {
+                background-color: #ffe9e9;
+            }
+        }
+    }
+}
+
+form {
+    color: var(--text-dark);
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border-primary);
+
+    .form_inputs {
+        padding: 1.5rem 0;
+        position: relative;
+
+        & select,
+        input {
+            width: 100%;
+            margin-bottom: .5rem;
+            padding: .5rem;
+            border: none;
+            height: 40px;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        & input {
+            color: var(--button-ckeckout);
+            text-transform: uppercase;
+            font-weight: bold;
+
+            &::placeholder {
+                text-transform: capitalize;
+                font-weight: 400;
+            }
+        }
+
+        #promoCodeMsg {
+            position: absolute;
+            z-index: 2;
+            bottom: 8px;
+            left: 0;
+            font-size: .8rem;
+            font-weight: bold;
+        }
+    }
+
+    button {
+        background-color: var(--button-danger);
+        margin-top: .6rem;
+    }
+}
+
+.checkout_container {
+    padding-top: 2rem;
+
+    button {
+        margin-top: 1rem;
+        background-color: var(--button-ckeckout);
+        width: 100%;
+    }
+}
