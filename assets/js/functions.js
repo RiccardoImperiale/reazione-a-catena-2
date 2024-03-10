@@ -121,10 +121,11 @@ export function addPromoCode(promoCode, cartFullPrice, promoCodes) {
 };
 
 export function submitForm(cartFullPrice, promoCodes, totalCost) {
-    let cartTotal = calcCartTotal();
-
+    
     document.querySelector('form').addEventListener('submit', (e) => {
         e.preventDefault();
+        
+        let cartTotal = calcCartTotal();
         const shippingChoice = document.querySelector('select').value;
         const promoCode = document.querySelector('#promo_code').value;
         cartFullPrice = addDeliveryPrice(shippingChoice, cartFullPrice, cartTotal);
