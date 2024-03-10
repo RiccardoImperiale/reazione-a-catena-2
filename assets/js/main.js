@@ -1,4 +1,4 @@
-// import { render, renderNumberOfItems, increaseQuantity, decreaseQuantity, renderTotalPrices, updateCartTotal, removeProduct, addDeliveryPrice, applyPromoCode } from './functions.js';
+import { render, renderNumberOfItems } from './functions.js';
 
 const products = [
     {
@@ -36,18 +36,16 @@ const promoCodes = ['megaultramaxipromo50', 'kebaboverdose80', 'eat-eat-repeat10
 
 const tableEl = document.querySelector("table > tbody");
 
-products.forEach((product, index) => render(product, index));
+products.forEach((product, index) => render(product, index, tableEl));
 
 const addButtons = document.querySelectorAll(".add-button");
 const removeButtons = document.querySelectorAll(".remove-button");
 const totalRender = document.querySelector("#total");
 const totalCost = document.querySelector("#total_cost");
 const removeProductBtns = document.querySelectorAll('.remove_product');
-const itemElemets = document.getElementById('items');
-const cartItems = document.getElementById('cart_items');
 const totalPrices = document.querySelectorAll(".total_price");
 
-renderNumberOfItems();
+renderNumberOfItems(numOfItems);
 renderTotalPrices();
 updateCartTotal();
 
@@ -63,33 +61,6 @@ document.querySelector('form').addEventListener('submit', (e) => {
     applyPromoCode(promoCode);
 });
 
-
-
-function render(product, index) {
-    const { image, name, quantity, price } = product;
-
-    const markup = `<tr class='single_product${index}'>
-                        <td class="d-flex"> <img src="./assets/img/${image}" alt="">
-                            <div class="align-self-center">
-                                <h3>${name}</h3>
-                                <a class='remove_product' href="#">Remove</a>
-                            </div>
-                        </td>
-                        <td class="textalign-center">
-                            <button class="remove-button" class="quantity_button" data-index="${index}">-</button>
-                            <input id="quantity${index}" data-price="${price}" type="number" disabled class="quantity_input" value="${quantity}">
-                            <button class="add-button" class="quantity_button" data-index="${index}">+</button>
-                        </td>
-                        <td class="textalign-center">${(price).toFixed(2)} €</td>
-                        <td id="total_price${index}" class="total_price textalign-center">${(price * quantity).toFixed(2)} €</td>
-                    </tr>`
-    tableEl.insertAdjacentHTML('beforeend', markup);
-};
-
-function renderNumberOfItems() {
-    itemElemets.innerHTML = `${numOfItems} Items`;
-    cartItems.innerHTML = `ITEMS - ${numOfItems}`;
-}
 
 function increaseQuantity(button, index) {
     button.addEventListener('click', () => {
