@@ -23,6 +23,14 @@ export function render(product, index, tableEl) {
 export function renderNumberOfItems(numOfItems) {
     const itemElemets = document.getElementById('items');
     const cartItems = document.getElementById('cart_items');
+    // render number of products added to cart
     itemElemets.innerHTML = `${numOfItems} Items`;
     cartItems.innerHTML = `ITEMS - ${numOfItems}`;
 }
+
+
+// render cart total to order summary
+export function renderCartTotal(cartTotal) {
+    const totalRender = document.querySelector("#total");
+    totalRender.innerHTML = cartTotal.toFixed(2) + ' €';
+};

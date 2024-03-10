@@ -1,4 +1,4 @@
-import { render, renderNumberOfItems } from './functions.js';
+import { render, renderNumberOfItems, renderCartTotal } from './functions.js';
 
 const products = [
     {
@@ -27,27 +27,25 @@ const products = [
     }
 ];
 
+const promoCodes = ['megaultramaxipromo50', 'kebaboverdose80', 'eat-eat-repeat10', 'fatgang25'];
+
 let numOfItems = products.length;
 let cartTotal = 0;
 let cartFullPrice = cartTotal;
 
-
-const promoCodes = ['megaultramaxipromo50', 'kebaboverdose80', 'eat-eat-repeat10', 'fatgang25'];
-
 const tableEl = document.querySelector("table > tbody");
 
+// add products to cart
 products.forEach((product, index) => render(product, index, tableEl));
 
 const addButtons = document.querySelectorAll(".add-button");
 const removeButtons = document.querySelectorAll(".remove-button");
-const totalRender = document.querySelector("#total");
 const totalCost = document.querySelector("#total_cost");
 const removeProductBtns = document.querySelectorAll('.remove_product');
-const totalPrices = document.querySelectorAll(".total_price");
 
-renderNumberOfItems(numOfItems);
-renderTotalPrices();
-updateCartTotal();
+renderNumberOfItems(numOfItems); // render number of products added to cart
+calcCartTotal(); // calculate cart total
+renderCartTotal(cartTotal); // render cart total
 
 addButtons.forEach((button, index) => increaseQuantity(button, index));
 removeButtons.forEach((button, index) => decreaseQuantity(button, index));
@@ -59,8 +57,8 @@ document.querySelector('form').addEventListener('submit', (e) => {
     const promoCode = document.querySelector('#promo_code').value;
     cartFullPrice = addDeliveryPrice(shippingChoice);
     applyPromoCode(promoCode);
+    totalCost.innerHTML = cartFullPrice.toFixed(2) + ' €'; // render the price including delivery and discount if applied 
 });
-
 
 function increaseQuantity(button, index) {
     button.addEventListener('click', () => {
@@ -70,7 +68,7 @@ function increaseQuantity(button, index) {
         quantityInput.value = Number(quantityInput.value) + 1;
         totalPrice.innerText = Number(price * quantityInput.value).toFixed(2) + " €";
         cartTotal += Number(price);
-        updateCartTotal();
+        renderCartTotal(cartTotal);
     });
 };
 
@@ -85,22 +83,20 @@ function decreaseQuantity(button, index) {
             quantityInput.value = Number(quantityInput.value) - 1;
             totalPrice.innerText = Number(finalPrice - price).toFixed(2) + " €";
             cartTotal -= Number(price);
-            updateCartTotal();
+            renderCartTotal(cartTotal);
         }
     });
 };
 
-function renderTotalPrices() {
+// add each total products prices
+function calcCartTotal() {
+    const totalPrices = document.querySelectorAll(".total_price");
     let totalText = '';
     totalPrices.forEach(totalPrice => {
         totalText = totalPrice.innerText.replace('€', '');
         cartTotal += Number(totalText);
     });
-};
-
-function updateCartTotal() {
-    cartTotal = Number(cartTotal);
-    totalRender.innerHTML = cartTotal.toFixed(2) + ' €';
+    //  return cartTotal;
 };
 
 function removeProduct(btn, index) {
@@ -111,7 +107,8 @@ function removeProduct(btn, index) {
         cartTotal -= Number(priceToSubtract);
         tableEl.removeChild(childToRemove);
         numOfItems--;
-        updateCartTotal(cartTotal, totalRender);
+        // calcCartTotal();
+        renderCartTotal();
         renderNumberOfItems(numOfItems);
     });
 };
@@ -121,7 +118,6 @@ function addDeliveryPrice(shippingChoice) {
     shippingChoice == 5 && (cartFullPrice += 5);
     shippingChoice == 7 && (cartFullPrice += 7);
     shippingChoice == 12 && (cartFullPrice += 12);
-    totalCost.innerHTML = cartFullPrice.toFixed(2) + ' €';
     return cartFullPrice;
 };
 
@@ -141,6 +137,5 @@ function applyPromoCode(promoCode) {
         promoCode == 'eat-eat-repeat10' && (cartFullPrice -= cartFullPrice / 100 * 10);
         promoMessage.innerText = `${promoCode.slice(-2)}% Promo Applied :)`
         promoMessage.style.color = '#58c46a';
-        totalCost.innerHTML = cartFullPrice.toFixed(2) + ' €';
     };
 };
