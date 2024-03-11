@@ -1,30 +1,11 @@
 import { render, renderNumberOfItems, calcCartTotal, renderCartTotal, increaseQuantity, decreaseQuantity, removeProduct, submitForm } from './functions.js';
+import { Product } from './classes/Product.js';
 
 const products = [
-    {
-        image: 'burger.png',
-        name: 'Burger',
-        quantity: 1,
-        price: 8.52,
-    },
-    {
-        image: 'french-fries.png',
-        name: 'French Fries',
-        quantity: 2,
-        price: 5.50,
-    },
-    {
-        image: 'kebab.png',
-        name: 'Kebab',
-        quantity: 3,
-        price: 7.00,
-    },
-    {
-        image: 'pizza.png',
-        name: 'Pizza',
-        quantity: 1,
-        price: 10.00,
-    }
+    new Product('burger.png', 'Burger', 1, 8.00),
+    new Product('french-fries.png', 'French Fries', 2, 5.50),
+    new Product('kebab.png', 'Kebab', 3, 7.00),
+    new Product('pizza.png', 'Pizza', 1, 10.00),
 ];
 
 const promoCodes = ['megaultramaxipromo50', 'kebaboverdose80', 'eat-eat-repeat10', 'fatgang25'];
